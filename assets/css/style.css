@@ -1,0 +1,79 @@
+/* Reset Overrides  */
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: 1.33em;
+}
+
+h5 {
+  font-size: .83em;
+}
+
+h6 {
+  font-size: .67em;
+}
+
+p {
+  display: block;
+  margin: 1em 0em;
+}
+
+body {
+  background-image: url(../images/background-image.jpg);
+  background-position: center;
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+
+/* Trivia Styling */
+.trivia-container {
+  background-color: white;
+  margin: 3.41vw auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trivia-container h1 {
+  /* font-family: 'ZCOOL QingKe HuangYou', cursive; */
+  padding: 30px 0;
+  font-size: 4.36vw;
+  margin-bottom: 2vw;
+  font-weight: bold;
+  color: purple;
+}
+
+.trivia-container h3 {
+  /* font-family: 'ZCOOL QingKe HuangYou', cursive; */
+  font-size: 2.5vw;
+  margin-bottom: 3vw;
+}
+
+#questions {
+  font-size: 3vw;
+  margin-bottom: 1vw;
+}
+
+.answers p {
+  font-size: 2vw;
+  margin: 2vw 0;
+  padding: 1.5vw 3vw;
+  border: 2px solid transparent;
+}
+
+.answers p:hover {
+  background-color: #41F1FF;
+  border: 2px solid #4C0CE8;
+  cursor: pointer;
+}
