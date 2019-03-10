@@ -21,10 +21,31 @@ var quizQuestions = [
   }
 ];
 
-for (let i = 0; i < quizQuestions.length; i++) {
-  console.log(quizQuestions[i].question);
-  console.log(quizQuestions[i].answers.a);
-  console.log(quizQuestions[i].answers.b);
-  console.log(quizQuestions[i].answers.c);
-  console.log(quizQuestions[i].answers.d);
-};
+// Keeps track of right answers
+var scoreCorrect = 0;
+// Keeps track of wrong answers
+var scoreWrong = 0;
+// Keeps track of questions where the time ran out
+var unanswered = 0;
+// Stores what quesiton the game is currently on
+var questionIndex = 0;
+
+$("#questions").text(quizQuestions[0].question);
+$("#answer1").text(quizQuestions[0].answers.a);
+
+$("#start").on("click", function() {
+  $("#start").css({
+    'display': 'none'
+  });
+  $(".hidden").css({
+    'visibility': 'visible'
+  });
+});
+
+// for (let i = 0; i < quizQuestions.length; i++) {
+//   console.log(quizQuestions[i].question);
+//   console.log(quizQuestions[i].answers.a);
+//   console.log(quizQuestions[i].answers.b);
+//   console.log(quizQuestions[i].answers.c);
+//   console.log(quizQuestions[i].answers.d);
+// };

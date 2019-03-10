@@ -45,6 +45,21 @@ body {
   align-items: center;
 }
 
+button {
+  position: relative;
+  top: 24vw;
+  background-color: blue;
+  color: white;
+  font-size: 2vw;
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  border: none;
+  padding: 1vw 2vw;
+}
+
+button:hover {
+  background-color: lightblue;
+}
+
 .trivia-container h1 {
   /* font-family: 'ZCOOL QingKe HuangYou', cursive; */
   padding: 30px 0;
@@ -70,10 +85,15 @@ body {
   margin: 2vw 0;
   padding: 1.5vw 3vw;
   border: 2px solid transparent;
+  text-align: center;
 }
 
 .answers p:hover {
   background-color: #41F1FF;
   border: 2px solid #4C0CE8;
   cursor: pointer;
+}
+
+.hidden {
+  visibility: hidden;
 }
