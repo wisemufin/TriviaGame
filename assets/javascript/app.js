@@ -30,9 +30,28 @@ var unanswered = 0;
 // Stores what quesiton the game is currently on
 var questionIndex = 0;
 
-$("#questions").text(quizQuestions[0].question);
-$("#answer1").text(quizQuestions[0].answers.a);
+function loadQuestions() {
+  if (questionIndex < (quizQuestions.length)) {
+    $("#questions").text(quizQuestions[questionIndex].question);
+    $("#answer1").text(quizQuestions[questionIndex].answers.a);
+    $("#answer2").text(quizQuestions[questionIndex].answers.b);
+    $("#answer3").text(quizQuestions[questionIndex].answers.c);
+    $("#answer4").text(quizQuestions[questionIndex].answers.d);
+  } else {
+    $("#questions").text("Game Over!");
+    $("#answer1").text("Wins: " + scoreCorrect);
+    $("#answer2").text("Losses: " + scoreWrong);
+  }
+}
 
+function checkAnswer() {
+  
+}
+
+// $("#questions").text(quizQuestions[0].question);
+// $("#answer1").text(quizQuestions[0].answers.a);
+
+// Function that starts the game
 $("#start").on("click", function() {
   $("#start").css({
     'display': 'none'
@@ -40,7 +59,11 @@ $("#start").on("click", function() {
   $(".hidden").css({
     'visibility': 'visible'
   });
+
+  loadQuestions();
+
 });
+
 
 // for (let i = 0; i < quizQuestions.length; i++) {
 //   console.log(quizQuestions[i].question);
