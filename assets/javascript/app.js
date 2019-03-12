@@ -47,6 +47,7 @@ var time = 30;
 var interval;
 
 function endgame() {
+  $("#time-hide").text("");
   $("#questions").text("Game Over!");
   $(".answer").css({
     'visibility' : 'visible'
@@ -57,10 +58,25 @@ function endgame() {
   $("#answer4").text("");
 }
 
+function hideAnswersAndTime() {
+  $("#time-hide").css({
+    'visibility' : 'hidden'
+  });
+  $(".answer").css({
+    'visibility' : 'hidden'
+  });
+}
+
+// Loads up all of the questions for the game
 function loadQuestions() {
   if (questionIndex < quizQuestions.length) {
+    // Sets the time to 30 for the countdown in the next round of questions
     time = 30;
+    // Starts the timer with the new 30 seconds
     timerStart();
+    $("#time-hide").css({
+      'visibility' : 'visible'
+    });
     $("#timer").text(time);
     $("#questions").text(quizQuestions[questionIndex].question);
     $(".answer").css({
@@ -71,15 +87,15 @@ function loadQuestions() {
     $("#answer3").text(quizQuestions[questionIndex].answers.c);
     $("#answer4").text(quizQuestions[questionIndex].answers.d);
   } else {
-    // endgame();
-    $("#questions").text("Game Over!");
-    $(".answer").css({
-      'visibility' : 'visible'
-    });
-    $("#answer1").text("Wins: " + scoreCorrect);
-    $("#answer2").text("Losses: " + scoreWrong);
-    $("#answer3").text("Unanswered: " + unanswered);
-    $("#answer4").text("");
+    endgame();
+    // $("#questions").text("Game Over!");
+    // $(".answer").css({
+    //   'visibility' : 'visible'
+    // });
+    // $("#answer1").text("Correct: " + scoreCorrect);
+    // $("#answer2").text("Wrong: " + scoreWrong);
+    // $("#answer3").text("Unanswered: " + unanswered);
+    // $("#answer4").text("");
   }
 }
 
@@ -120,11 +136,11 @@ function decrement() {
 // Function to stop the timer
 function stop() {
   clearInterval(interval);
+  // Moves game to the next question
   questionIndex++;
+  hideAnswersAndTime();
   $("#questions").text("Time is up!");
-  $(".answer").css({
-    'visibility' : 'hidden'
-  });
+  // Shows next set of questions after 5 seconds
   setTimeout(loadQuestions, 1000 * 5);
 }
 
@@ -138,10 +154,8 @@ $(".answer").on("click",function() {
   if ($(this).attr("value") === quizQuestions[questionIndex].correctAnswer) {
     // console.log($(this).attr("value"));
     resetTimer();
+    hideAnswersAndTime();
     $("#questions").text("Correct!");
-    $(".answer").css({
-      'visibility' : 'hidden'
-    });
     // Increase question index
     questionIndex++;
     scoreCorrect++;
@@ -149,11 +163,9 @@ $(".answer").on("click",function() {
     console.log(questionIndex);
 } else {
   resetTimer();
+  hideAnswersAndTime();
   $("#questions").text("Wrong!");
   // Hide answers text
-  $(".answer").css({
-    'visibility' : 'hidden'
-  });
   // Increase wrong score
   scoreWrong++;
   // Increase question index
