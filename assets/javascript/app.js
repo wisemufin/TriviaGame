@@ -28,6 +28,26 @@ var quizQuestions = [
       d: '1999'
     },
     correctAnswer: 'c'
+  },
+  {
+    question: "What year did Diddy Kong Racing get released?",
+    answers: {
+      a: '1995',
+      b: '1994',
+      c: '1997',
+      d: '1999'
+    },
+    correctAnswer: 'c'
+  },
+  {
+    question: "What year did Super Mario 64 get released?",
+    answers: {
+      a: '1995',
+      b: '1996',
+      c: '1997',
+      d: '1999'
+    },
+    correctAnswer: 'b'
   }
 ];
 
@@ -47,15 +67,23 @@ var time = 30;
 var interval;
 
 function endgame() {
-  $("#time-hide").text("");
+  $("#time-hide").css({'visibility' : 'hidden'});
   $("#questions").text("Game Over!");
   $(".answer").css({
     'visibility' : 'visible'
   });
-  $("#answer1").text("Correct: " + scoreCorrect);
-  $("#answer2").text("Wrong: " + scoreWrong);
-  $("#answer3").text("Unanswered: " + unanswered);
-  $("#answer4").text("");
+  $("#answer1").text("Correct: " + scoreCorrect).removeClass("answer");
+  $("#answer2").text("Wrong: " + scoreWrong).removeClass("answer");
+  $("#answer3").text("Unanswered: " + unanswered).removeClass("answer");
+  $("#answer4").css({'visibility' : 'hidden'});
+  $("#restart").css({'display' : 'block'}).on("click", function() {
+    scoreWrong = 0;
+    scoreCorrect = 0;
+    unanswered = 0;
+    questionIndex = 0;
+    resetAnswerCSS();
+    loadQuestions();
+  });
 }
 
 function hideAnswersAndTime() {
@@ -67,6 +95,13 @@ function hideAnswersAndTime() {
   });
 }
 
+function resetAnswerCSS() {
+  $('#answer1').addClass("answer");
+  $('#answer2').addClass("answer");
+  $('#answer3').addClass("answer");
+  $("answer4").css({'display' : 'block'});
+}
+
 // Loads up all of the questions for the game
 function loadQuestions() {
   if (questionIndex < quizQuestions.length) {
@@ -74,6 +109,7 @@ function loadQuestions() {
     time = 30;
     // Starts the timer with the new 30 seconds
     timerStart();
+    $("#restart").css({'display' : 'none'});
     $("#time-hide").css({
       'visibility' : 'visible'
     });
@@ -119,7 +155,6 @@ $("#start").on("click", function() {
 function timerStart() {
   clearInterval(interval);
   interval = setInterval(decrement, 1000);
-  console.log(interval);
 }
 
 // Timer countdown function

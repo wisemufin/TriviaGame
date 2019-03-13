@@ -88,7 +88,7 @@ button:hover {
   text-align: center;
 }
 
-.answers p:hover {
+.answer:hover {
   background-color: #41F1FF;
   border: 2px solid #4C0CE8;
   cursor: pointer;
@@ -96,4 +96,18 @@ button:hover {
 
 .hidden {
   visibility: hidden;
+}
+
+#restart {
+  background-color: blue;
+  color: white;
+  font-size: 2vw;
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  border: none;
+  padding: 1vw 2vw;
+  display: none;
+}
+
+#restart:hover {
+  cursor: pointer;
 }
