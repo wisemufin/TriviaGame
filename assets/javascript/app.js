@@ -1,3 +1,4 @@
+// Object holding all of the quiz questions and answers
 var quizQuestions = [
   {
     question: "What year was Doom released?",
@@ -66,26 +67,35 @@ var time = 30;
 // Holds the interval
 var interval;
 
+// Function that displays the final screen of the game
 function endgame() {
+  // Hides the timer
   $("#time-hide").css({'visibility' : 'hidden'});
+  // Changes the screen to say game over
   $("#questions").text("Game Over!");
   $(".answer").css({
     'visibility' : 'visible'
   });
+  // These remove the answer class so that these sections no longer have hover effects
   $("#answer1").text("Correct: " + scoreCorrect).removeClass("answer");
   $("#answer2").text("Wrong: " + scoreWrong).removeClass("answer");
   $("#answer3").text("Unanswered: " + unanswered).removeClass("answer");
+  // Hides answer 4
+  // This was necessar because the restart button needed to be its own thing
   $("#answer4").css({'visibility' : 'hidden'});
+  // Resets all of the game conditions to 0 and starts on the first question
   $("#restart").css({'display' : 'block'}).on("click", function() {
     scoreWrong = 0;
     scoreCorrect = 0;
     unanswered = 0;
     questionIndex = 0;
+    // resetAnswerCSS brings the hover effects back to the answers
     resetAnswerCSS();
     loadQuestions();
   });
 }
 
+// This is necessary for the screen between the questions to hide the timer and answers
 function hideAnswersAndTime() {
   $("#time-hide").css({
     'visibility' : 'hidden'
@@ -95,6 +105,7 @@ function hideAnswersAndTime() {
   });
 }
 
+// The function to bring back the hover effects of the answers
 function resetAnswerCSS() {
   $('#answer1').addClass("answer");
   $('#answer2').addClass("answer");
@@ -123,20 +134,10 @@ function loadQuestions() {
     $("#answer3").text(quizQuestions[questionIndex].answers.c);
     $("#answer4").text(quizQuestions[questionIndex].answers.d);
   } else {
+    // Runs the endgame function and shows the final screen with score and restart button
     endgame();
-    // $("#questions").text("Game Over!");
-    // $(".answer").css({
-    //   'visibility' : 'visible'
-    // });
-    // $("#answer1").text("Correct: " + scoreCorrect);
-    // $("#answer2").text("Wrong: " + scoreWrong);
-    // $("#answer3").text("Unanswered: " + unanswered);
-    // $("#answer4").text("");
   }
 }
-
-// $("#questions").text(quizQuestions[0].question);
-// $("#answer1").text(quizQuestions[0].answers.a);
 
 // Function that starts the game
 $("#start").on("click", function() {
@@ -191,7 +192,7 @@ $(".answer").on("click",function() {
     resetTimer();
     hideAnswersAndTime();
     $("#questions").text("Correct!");
-    // Increase question index
+    // Move to next question
     questionIndex++;
     scoreCorrect++;
     setTimeout(loadQuestions, 1000 * 5);
